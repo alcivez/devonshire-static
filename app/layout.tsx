@@ -17,7 +17,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://devonshire-recruitment.pages.dev'),
+  metadataBase: new URL('https://devonshirerecruitment.com'),
   title: "Devonshire Recruiting & Consulting Partners | Hiring Made Simple.",
   description:
     "Devonshire is a leading recruitment and consulting firm headquartered in Boston, Massachusetts with a global placement footprint.",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Devonshire Recruiting & Consulting Partners | Hiring Made Simple.",
     description: "Devonshire is a leading recruitment and consulting firm headquartered in Boston, Massachusetts with a global placement footprint.",
-    url: "https://devonshire-recruitment.pages.dev",
+    url: "https://devonshirerecruitment.com",
     siteName: "Devonshire Recruiting",
     images: [
       {
