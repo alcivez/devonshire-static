@@ -94,7 +94,11 @@ export default function JobsPage() {
                 className="job-card"
               >
                 <Image
-                  src="/wp-content/uploads/2017/01/fulltime.png"
+                  src={
+                    job.jobType.toLowerCase() === "full time"
+                      ? "/wp-content/uploads/2017/01/fulltime.png"
+                      : "/wp-content/uploads/2017/01/hourly.png"
+                  }
                   alt=""
                   width={55}
                   height={55}

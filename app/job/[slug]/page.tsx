@@ -59,7 +59,11 @@ export default async function JobDetailPage({
               {/* Company / job info header */}
               <div className="job-company-info">
                 <Image
-                  src="/wp-content/uploads/2017/01/fulltime.png"
+                  src={
+                    job.jobType.toLowerCase() === "full time"
+                      ? "/wp-content/uploads/2017/01/fulltime.png"
+                      : "/wp-content/uploads/2017/01/hourly.png"
+                  }
                   alt={job.title}
                   width={80}
                   height={80}

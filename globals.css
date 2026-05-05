@@ -24,6 +24,9 @@ body {
   font-weight: 400;
   color: var(--text-dark);
   background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5 {
@@ -185,16 +188,17 @@ nav.main-nav ul li .dropdown li > a {
   height: 100vh;
   overflow: hidden;
   background-color: var(--dark-gray);
+  min-height: 600px;
 }
 
 .hero-slide {
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-slide::before {
@@ -202,14 +206,21 @@ nav.main-nav ul li .dropdown li > a {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
+  z-index: 0;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   text-align: center;
   color: white;
   padding: 0 20px;
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
 }
 
 .hero-content h2 {
@@ -683,6 +694,13 @@ nav.main-nav ul li .dropdown li > a {
   text-align: center;
   padding: 20px 0;
   font-size: 13px;
+  margin-top: auto;
+}
+
+/* Main content area */
+main {
+  flex: 1;
+  min-height: calc(100vh - 200px);
 }
 
 /* Page header */

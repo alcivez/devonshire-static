@@ -2,10 +2,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { isAuthenticated, getCurrentAuthUser } from "@/lib/auth";
 
 export default function Header({ transparent = false }: { transparent?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     if (!transparent) return;
@@ -13,6 +16,12 @@ export default function Header({ transparent = false }: { transparent?: boolean 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [transparent]);
+
+  useEffect(() => {
+    // Check authentication status
+    setAuthenticated(isAuthenticated());
+    setUser(getCurrentAuthUser());
+  }, []);
 
   const headerClass = [
     "site-header",
@@ -95,13 +104,15 @@ export default function Header({ transparent = false }: { transparent?: boolean 
                 <Link href="/#contactsPage">Contact</Link>
               </li>
               <li className="auth">
-                <a
-                  href="https://timelive.livetecs.com/auth"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  TimeLive
-                </a>
+                {authenticated ? (
+                  <Link href="/admin/dashboard" className="admin-link">
+                    Dashboard
+                  </Link>
+                ) : (
+                  <Link href="/admin/login" className="admin-link">
+                    Admin Login
+                  </Link>
+                )}
               </li>
             </ul>
           </nav>
