@@ -21,7 +21,35 @@ export const metadata: Metadata = {
   description:
     "Devonshire is a leading recruitment and consulting firm headquartered in Boston, Massachusetts with a global placement footprint.",
   icons: {
-    icon: "/wp-content/uploads/2022/06/cropped-devonshire-header-logo-32x32.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/png" },
+      { url: "/wp-content/uploads/2022/06/cropped-devonshire-header-logo-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/wp-content/uploads/2022/06/devonshire-header-logo.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  openGraph: {
+    title: "Devonshire Recruiting & Consulting Partners | Hiring Made Simple.",
+    description: "Devonshire is a leading recruitment and consulting firm headquartered in Boston, Massachusetts with a global placement footprint.",
+    url: "https://devonshire-recruitment.pages.dev",
+    siteName: "Devonshire Recruiting",
+    images: [
+      {
+        url: "/wp-content/uploads/2022/12/AdobeStock_196044089.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Devonshire Recruiting - Professional Recruitment Services",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Devonshire Recruiting & Consulting Partners | Hiring Made Simple.",
+    description: "Devonshire is a leading recruitment and consulting firm headquartered in Boston, Massachusetts with a global placement footprint.",
+    images: ["/wp-content/uploads/2022/12/AdobeStock_196044089.jpeg"],
   },
 };
 

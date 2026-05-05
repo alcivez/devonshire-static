@@ -132,8 +132,7 @@ export default function HomePage() {
         <div
           className="hero-slide"
           style={{
-            backgroundImage:
-              "url(/wp-content/uploads/2022/12/AdobeStock_196044089.jpeg)",
+            backgroundImage: "url(/wp-content/uploads/2022/12/AdobeStock_196044089.jpeg)",
           }}
         >
           <div className="hero-content">
@@ -153,6 +152,9 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Preload critical images */}
+      <link rel="preload" as="image" href="/wp-content/uploads/2022/12/AdobeStock_196044089.jpeg" />
 
       {/* HOT SPOT */}
       <section className="dark-section">
@@ -251,7 +253,11 @@ export default function HomePage() {
                 className="job-card"
               >
                 <Image
-                  src="/wp-content/uploads/2017/01/fulltime.png"
+                  src={
+                    job.jobType.toLowerCase() === "full time"
+                      ? "/wp-content/uploads/2017/01/fulltime.png"
+                      : "/wp-content/uploads/2017/01/hourly.png"
+                  }
                   alt=""
                   width={55}
                   height={55}
