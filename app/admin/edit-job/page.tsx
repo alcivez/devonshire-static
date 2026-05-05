@@ -67,7 +67,7 @@ function EditJobContent() {
           throw new Error('Failed to fetch local jobs data');
         }
         const localData = await localResponse.json();
-        const localJob = Object.values(localData).find((job: any) => job.slug === jobId);
+        const localJob = Object.values(localData).find((job: any) => job.slug === jobId) as any;
         if (localJob) {
           setFormData({
             slug: localJob.slug,

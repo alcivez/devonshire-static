@@ -17,6 +17,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://devonshire-recruitment.pages.dev'),
   title: "Devonshire Recruiting & Consulting Partners | Hiring Made Simple.",
   description:
     "Devonshire is a leading recruitment and consulting firm headquartered in Boston, Massachusetts with a global placement footprint.",
