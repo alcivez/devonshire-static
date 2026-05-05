@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 
 export default function AdminLogin() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      await login(email, password);
+      await login(username, password);
       router.push('/admin/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
@@ -77,7 +77,7 @@ export default function AdminLogin() {
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <div>
               <label
-                htmlFor="email"
+                htmlFor="username"
                 style={{
                   display: "block",
                   fontSize: "13px",
@@ -89,16 +89,16 @@ export default function AdminLogin() {
                   fontFamily: "Raleway, sans-serif"
                 }}
               >
-                Email Address
+                Username
               </label>
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="username"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 style={{
                   width: "100%",
                   padding: "12px",
@@ -108,7 +108,7 @@ export default function AdminLogin() {
                   fontFamily: "Lato, sans-serif",
                   boxSizing: "border-box"
                 }}
-                placeholder="you@example.com"
+                placeholder="Enter your username"
               />
             </div>
 

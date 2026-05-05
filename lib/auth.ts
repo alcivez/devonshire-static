@@ -8,54 +8,51 @@ export interface AuthState {
   loading: boolean;
 }
 
-// TEMPORARY: Bypass authentication for design review
-const BYPASS_AUTH = true;
+// Hardcoded admin credentials
+const ADMIN_CREDENTIALS = {
+  username: 'jorgeajs',
+  password: 'jorge20511307'
+};
 
 // Check if user is authenticated
 export function isAuthenticated(): boolean {
-  if (BYPASS_AUTH) return true;
   return !!getAuthToken() && !!getCurrentUser();
 }
 
 // Get current authenticated user
 export function getCurrentAuthUser(): any {
-  if (BYPASS_AUTH) {
-    return {
-      id: 1,
-      email: 'admin@devonshire.com',
-      name: 'Admin User',
-      role: 'admin' as const,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    };
-  }
   return getCurrentUser();
 }
 
 // Login function
 export async function login(email: string, password: string): Promise<void> {
-  if (BYPASS_AUTH) {
-    // Set fake user for bypass
-    const fakeUser = {
+  // Check against hardcoded admin credentials
+  if (email === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    const user = {
       id: 1,
       email: email,
-      name: 'Admin User',
+      name: 'Jorge Admin',
       role: 'admin' as const,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     };
-    setAuthToken('bypass_token_' + Date.now());
-    setCurrentUser(fakeUser);
+    setAuthToken('admin_token_' + Date.now());
+    setCurrentUser(user);
     return;
   }
 
-  const response = await authApi.login(email, password);
+  // If credentials don't match, try API (if available)
+  try {
+    const response = await authApi.login(email, password);
 
-  if (response.success && response.token && response.user) {
-    setAuthToken(response.token);
-    setCurrentUser(response.user);
-  } else {
-    throw new Error(response.error || 'Login failed');
+    if (response.success && response.token && response.user) {
+      setAuthToken(response.token);
+      setCurrentUser(response.user);
+    } else {
+      throw new Error(response.error || 'Login failed');
+    }
+  } catch (error) {
+    throw new Error('Invalid credentials');
   }
 }
 
@@ -71,20 +68,6 @@ export function logout(): void {
 
 // Register function
 export async function register(email: string, password: string, name: string): Promise<void> {
-  if (BYPASS_AUTH) {
-    const fakeUser = {
-      id: 1,
-      email: email,
-      name: name,
-      role: 'admin' as const,
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    };
-    setAuthToken('bypass_token_' + Date.now());
-    setCurrentUser(fakeUser);
-    return;
-  }
-
   const response = await authApi.register(email, password, name);
 
   if (response.success && response.token && response.user) {
